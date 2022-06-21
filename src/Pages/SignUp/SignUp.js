@@ -16,6 +16,7 @@ function Login() {
               boxSizing: "border-box",
               backgroundImage: `url(${login})`,
               backgroundSize: "cover",
+              minHeight: "100vh",
               backgroundRepeat: "no-repeat",
             }
       }

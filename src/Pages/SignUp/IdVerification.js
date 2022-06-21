@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import {
   Grid,
@@ -10,16 +10,15 @@ import {
   FormControlLabel,
   TextField,
   useMediaQuery,
+  RadioGroup,
+  Radio,
+  FormControl,
+  FormLabel,
+  MenuItem,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import AddIcon from "@mui/icons-material/Add";
-
-import MenuItem from "@mui/material/MenuItem";
-
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 const countries = [
   "Afghanistan",
   "Åland Islands",
@@ -288,6 +287,26 @@ const WhiteCssButton = styled(Button)({
 
 function IdVerification({ data, setData }) {
   const small = useMediaQuery("(max-width:756px)");
+  const dispatch = useDispatch();
+  const [error, setError] = useState({
+    name: false,
+    email: false,
+    username: false,
+    password: false,
+  });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch({ type: "NEXT" });
+  };
+
+  const handleChange = (e) => {
+    const { value, id } = e.target;
+
+    if (error[id]) {
+      setError((state) => ({ ...state, [id]: false }));
+    }
+    setData((state) => ({ ...state, [id]: value }));
+  };
 
   return (
     <>
@@ -318,11 +337,7 @@ function IdVerification({ data, setData }) {
               Identity verification
             </p>
           </Typography>
-          <Box
-            component="form"
-            noValidate
-            // onSubmit={handleSubmit}
-          >
+          <Box component="form" noValidate onSubmit={handleSubmit}>
             <FormControl sx={{ width: "100%" }}>
               <FormLabel>Choose your identity type</FormLabel>
               <Paper
@@ -340,98 +355,123 @@ function IdVerification({ data, setData }) {
                 }}
               >
                 <RadioGroup
+                  id="id_type"
                   row
+                  onChange={(e) =>
+                    handleChange({
+                      target: { value: e.target.value, id: "id_type" },
+                    })
+                  }
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
                 >
                   <FormControlLabel
-                    value="ID Card"
+                    value="id"
                     control={<Radio />}
                     label="ID Card"
                   />
                   <FormControlLabel
-                    value="Passport"
+                    value="passport"
                     control={<Radio />}
                     label="Passport"
                   />
                 </RadioGroup>
               </Paper>
             </FormControl>
-            <p style={{ fontWeight: "500" }}>Passport</p>
-            <label htmlFor="upload-photo">
-              <input
-                style={{ display: "none" }}
-                id="upload-photo"
-                name="upload-photo"
-                type="file"
-              />
-              <Fab
-                size="small"
-                sx={{
-                  width: "100%",
-                  borderRadius: "2px",
-                  height: "6em",
-                  backgroundColor: "rgb(250, 250, 250, 0.5)",
-                  backdropFilter: "blur(2px)",
-                }}
-                component="span"
-                aria-label="add"
-                variant="extended"
-              >
-                <Grid item xs={12} container>
-                  <Grid item xs={12} container justifyContent={"center"}>
-                    <AddIcon />
-                  </Grid>
-                  <Grid
-                    item
-                    xs={12}
-                    container
-                    justifyContent={"center"}
-                    sx={{ textTransform: "none", fontSize: "1.5em" }}
+            {data.id_type !== "" && (
+              <>
+                <p style={{ fontWeight: "500" }}>
+                  {data.id_type === "passport"
+                    ? "Passport"
+                    : " Identification Card"}
+                </p>
+                <label htmlFor="upload-photo">
+                  <input
+                    style={{ display: "none" }}
+                    id="id_proof"
+                    name="upload-photo"
+                    type="file"
+                  />
+                  <Fab
+                    size="small"
+                    sx={{
+                      width: "100%",
+                      borderRadius: "2px",
+                      height: "6em",
+                      backgroundColor: "rgb(250, 250, 250, 0.5)",
+                      backdropFilter: "blur(2px)",
+                    }}
+                    component="span"
+                    aria-label="add"
+                    variant="extended"
                   >
-                    Upload
-                  </Grid>
-                </Grid>
-              </Fab>
-              <br />
-            </label>
-            <p style={{ fontWeight: "500" }}>Issuing Country</p>
-            <CssTextField
-              select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              placeholder="Country"
-              sx={{
-                width: "100%",
-                borderRadius: "2px",
-                backgroundColor: "rgb(250, 250, 250, 0.5)",
-                backdropFilter: "blur(2px)",
-              }}
-            >
-              {countries.map((value, index) => {
-                return <MenuItem value={value}>{value}</MenuItem>;
-              })}
-            </CssTextField>
-            <p style={{ fontWeight: "500" }}>Passport Number</p>
-            <CssTextField
-              required
-              fullWidth
-              placeholder="Number"
-              id="email"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <p style={{ fontWeight: "500" }}>Expiry Date</p>
-            <CssTextField
-              required
-              fullWidth
-              name="date"
-              placeholder="Date"
-              type="date"
-              id="password"
-              autoComplete="current-password"
-            />
+                    <Grid item xs={12} container>
+                      <Grid item xs={12} container justifyContent={"center"}>
+                        <AddIcon />
+                      </Grid>
+                      <Grid
+                        item
+                        xs={12}
+                        container
+                        justifyContent={"center"}
+                        sx={{ textTransform: "none", fontSize: "1.5em" }}
+                      >
+                        Upload
+                      </Grid>
+                    </Grid>
+                  </Fab>
+                  <br />
+                </label>
+                {data.id_type === "passport" && (
+                  <>
+                    {" "}
+                    <p style={{ fontWeight: "500" }}>Issuing Country</p>
+                    <CssTextField
+                      select
+                      onChange={handleChange}
+                      id="country"
+                      placeholder="Country"
+                      sx={{
+                        width: "100%",
+                        borderRadius: "2px",
+                        backgroundColor: "rgb(250, 250, 250, 0.5)",
+                        backdropFilter: "blur(2px)",
+                      }}
+                    >
+                      {countries.map((value, index) => {
+                        return <MenuItem value={value}>{value}</MenuItem>;
+                      })}
+                    </CssTextField>
+                  </>
+                )}
+                <p style={{ fontWeight: "500" }}>
+                  {data.id_type === "passport" ? "Passport" : "ID"} Number
+                </p>
+                <CssTextField
+                  required
+                  fullWidth
+                  placeholder="Number"
+                  id="number"
+                  onChange={handleChange}
+                  autoFocus
+                />
+                {data.id_type === "passport" && (
+                  <>
+                    {" "}
+                    <p style={{ fontWeight: "500" }}>Expiry Date</p>
+                    <CssTextField
+                      required
+                      fullWidth
+                      name="date"
+                      placeholder="Date"
+                      onChange={handleChange}
+                      type="date"
+                      id="expiry"
+                    />
+                  </>
+                )}{" "}
+              </>
+            )}
             <Grid container spacing={2} item xs={12}>
               <Grid item xs={6}>
                 <WhiteCssButton
@@ -440,7 +480,9 @@ function IdVerification({ data, setData }) {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                   backgroundColor="white"
-                  onClick={() => {}}
+                  onClick={() => {
+                    dispatch({ type: "PREV" });
+                  }}
                   style={{
                     fontFamily: "Montserrat, sans-serif",
                     color: "black",
@@ -455,7 +497,7 @@ function IdVerification({ data, setData }) {
                       fontFamily: "Montserrat, sans-serif",
                     }}
                   >
-                    Cancel
+                    Back
                   </p>
                 </WhiteCssButton>
               </Grid>
