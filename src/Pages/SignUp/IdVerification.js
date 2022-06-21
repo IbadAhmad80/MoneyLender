@@ -9,6 +9,7 @@ import {
   Box,
   FormControlLabel,
   TextField,
+  useMediaQuery,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import Radio from "@mui/material/Radio";
@@ -16,9 +17,8 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import AddIcon from "@mui/icons-material/Add";
-import InputLabel from "@mui/material/InputLabel";
+
 import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
 
 const countries = [
   "Afghanistan",
@@ -266,28 +266,29 @@ const countries = [
   "Zimbabwe",
 ];
 
-function IdVerification({ data, setData }) {
-  const CssTextField = styled(TextField)({
-    "& .MuiOutlinedInput-root": {
-      backgroundColor: "rgba(255,255,255,0.6)",
-      height: "3em",
-      borderRadius: "10px",
-    },
-  });
-  const handleChange = (event) => {
-    setData(event.target.value);
-  };
-  const CssButton = styled(Button)({
-    backgroundColor: "#4267b2",
-    color: "white",
-    borderRadius: "5px",
-  });
+const CssTextField = styled(TextField)({
+  "& .MuiOutlinedInput-root": {
+    backgroundColor: "rgba(255,255,255,0.6)",
+    height: "3em",
+    borderRadius: "10px",
+  },
+});
 
-  const WhiteCssButton = styled(Button)({
-    backgroundColor: "white",
-    color: "black",
-    borderRadius: "5px",
-  });
+const CssButton = styled(Button)({
+  backgroundColor: "#4267b2",
+  color: "white",
+  borderRadius: "5px",
+});
+
+const WhiteCssButton = styled(Button)({
+  backgroundColor: "white",
+  color: "black",
+  borderRadius: "5px",
+});
+
+function IdVerification({ data, setData }) {
+  const small = useMediaQuery("(max-width:756px)");
+
   return (
     <>
       <Grid item container justifyContent={"center"} alignItems="center">
@@ -299,9 +300,9 @@ function IdVerification({ data, setData }) {
             flexDirection: "column",
             padding: "1.5em 2em",
             borderRadius: "1em",
-            width: "25vw",
+            width: small ? "100vw" : "25vw",
           }}
-          elevation={6}
+          elevation={small ? 0 : 6}
           style={{
             backgroundColor: "rgb(250, 250, 250, 0.2)",
             border: "1px solid rgb(250, 250, 250, 0.5)",
@@ -395,24 +396,22 @@ function IdVerification({ data, setData }) {
               <br />
             </label>
             <p style={{ fontWeight: "500" }}>Issuing Country</p>
-            <FormControl fullWidth>
-              <CssTextField
-                select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Issuing Country"
-                sx={{
-                  width: "100%",
-                  borderRadius: "2px",
-                  backgroundColor: "rgb(250, 250, 250, 0.5)",
-                  backdropFilter: "blur(2px)",
-                }}
-              >
-                {countries.map((value, index) => {
-                  return <MenuItem value={value}>{value}</MenuItem>;
-                })}
-              </CssTextField>
-            </FormControl>
+            <CssTextField
+              select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              placeholder="Country"
+              sx={{
+                width: "100%",
+                borderRadius: "2px",
+                backgroundColor: "rgb(250, 250, 250, 0.5)",
+                backdropFilter: "blur(2px)",
+              }}
+            >
+              {countries.map((value, index) => {
+                return <MenuItem value={value}>{value}</MenuItem>;
+              })}
+            </CssTextField>
             <p style={{ fontWeight: "500" }}>Passport Number</p>
             <CssTextField
               required

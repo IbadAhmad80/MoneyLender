@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
-import Signup from "./Pages/SignUp";
+import Signup from "./Pages/SignUp/SignUp";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 function App() {
   const theme = createTheme({

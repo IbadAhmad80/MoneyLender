@@ -12,8 +12,8 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import LoginNav from "../Components/LoginNav";
-import login from "../assets/login.svg";
+import LoginNav from "../../Components/LoginNav";
+import login from "../../assets/login.svg";
 
 const CssTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {

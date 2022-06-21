@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
-import { Grid, Typography, Button, Paper, Box, TextField } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Button,
+  Paper,
+  Box,
+  TextField,
+  useMediaQuery,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 const CssTextField = styled(TextField)({
@@ -17,18 +25,14 @@ const CssButton = styled(Button)({
   borderRadius: "5px",
 });
 
-const WhiteCssButton = styled(Button)({
-  backgroundColor: "white",
-  color: "black",
-  borderRadius: "5px",
-});
-
 function PersonalInformation({ data, setData }) {
+  const small = useMediaQuery("(max-width:756px)");
+
   const dispatch = useDispatch();
   const [error, setError] = useState({
     name: false,
     email: false,
-    email: false,
+    username: false,
     password: false,
   });
 
@@ -75,9 +79,9 @@ function PersonalInformation({ data, setData }) {
             flexDirection: "column",
             padding: "1.5em 2em",
             borderRadius: "1em",
-            width: "25vw",
+            width: small ? "100vw" : "25vw",
           }}
-          elevation={6}
+          elevation={small ? 0 : 6}
           style={{
             backgroundColor: "rgb(250, 250, 250, 0.2)",
             border: "1px solid rgb(250, 250, 250, 0.5)",
@@ -148,7 +152,7 @@ function PersonalInformation({ data, setData }) {
               autoComplete="current-password"
             />
             <Grid container spacing={2} item xs={12} justifyContent="center">
-              <Grid container item justifyItems="flex-end" xs={6}>
+              <Grid container item justifyItems="flex-end" xs={12}>
                 <CssButton
                   type="submit"
                   fullWidth

@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography, Button, useMediaQuery } from "@mui/material";
-import HomeNav from "../Components/HomeNav";
-import home from "../assets/homepage.svg";
+import HomeNav from "../../Components/HomeNav";
+import home from "../../assets/homepage.svg";
 import { Link } from "react-router-dom";
 const Home = () => {
   const small = useMediaQuery("(max-width:756px)");
