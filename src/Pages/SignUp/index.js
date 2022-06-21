@@ -68,7 +68,7 @@ const StepForm = () => {
                 {labels.map((label) => (
                   <Step key={label}>
                     <StepLabel>
-                      <p style={{ fontSize: "1.2em" }}>{label}</p>
+                      <p style={{ fontSize: "50e" }}>{label}</p>
                     </StepLabel>
                   </Step>
                 ))}

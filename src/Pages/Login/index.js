@@ -46,6 +46,7 @@ const Login = () => {
               backgroundImage: `url(${login})`,
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
             }
       }
     >

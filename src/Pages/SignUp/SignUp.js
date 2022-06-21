@@ -18,6 +18,7 @@ function Login() {
               backgroundSize: "cover",
               minHeight: "100vh",
               backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
             }
       }
     >
