@@ -67,7 +67,9 @@ const StepForm = () => {
               <Stepper activeStep={signup} alternativeLabel={small}>
                 {labels.map((label) => (
                   <Step key={label}>
-                    <StepLabel> {label}</StepLabel>
+                    <StepLabel>
+                      <p style={{ fontSize: "1.2em" }}>{label}</p>
+                    </StepLabel>
                   </Step>
                 ))}
               </Stepper>

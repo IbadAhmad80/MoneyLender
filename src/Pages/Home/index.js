@@ -26,12 +26,12 @@ const Home = () => {
         >
           <Grid container spacing={3} item xs={12}>
             <Grid item xs={12}>
-              <Typography variant="h3">
+              <Typography variant="h3"  fontWeight={800}>
                 Be of help to others by lending them some money
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="body" fontSize={"1.2em"}>
+              <Typography variant="body" fontWeight={600} fontSize={"1.2em"}>
                 Cras ultricies ligula sed magna dictum porta. Cras ultricies
                 ligula sed magna dictum porta. Vivamus suscipit tortor eget
                 felis porttitor volutpat. Donec sollicitudin molestie malesuada
@@ -39,15 +39,17 @@ const Home = () => {
             </Grid>
             <Grid item xs={12}>
               <Button
+                size={small ? "" : "large"}
                 as={Link}
                 to="/login"
-                size="large"
                 sx={{
-                  bg: "#4267B2",
+                  backgroundColor: "#4267B2",
+                  borderRadius: "4px",
                   color: "white",
+                  padding: "0.7em 1.3em",
+                  fontSize: small ? "" : "1.2em",
+                  width: "100%",
                   textTransform: "none",
-                  fontSize: "1.2em",
-                  borderRadius: "none",
                   textDecoration: "none",
                 }}
                 variant="contained"
@@ -57,7 +59,7 @@ const Home = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid sx={{ height: "70vh" }} item xs={12} md={6}>
+        <Grid sx={{ height: "80vh" }} item xs={12} md={6}>
           <img style={{ height: "100%", width: "100%" }} src={home} alt="" />
         </Grid>
       </Grid>

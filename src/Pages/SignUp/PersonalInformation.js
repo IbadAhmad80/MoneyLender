@@ -25,6 +25,12 @@ const CssButton = styled(Button)({
   borderRadius: "5px",
 });
 
+const WhiteCssButton = styled(Button)({
+  backgroundColor: "white",
+  color: "black",
+  borderRadius: "5px",
+});
+
 function PersonalInformation({ data, setData }) {
   const small = useMediaQuery("(max-width:756px)");
 
@@ -151,13 +157,38 @@ function PersonalInformation({ data, setData }) {
               id="password"
               autoComplete="current-password"
             />
-            <Grid container spacing={2} item xs={12} justifyContent="center">
-              <Grid container item justifyItems="flex-end" xs={12}>
+            <Grid container spacing={2} item xs={12}>
+              <Grid item xs={6}>
+                <WhiteCssButton
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  backgroundColor="white"
+                  style={{
+                    fontFamily: "Montserrat, sans-serif",
+                    color: "black",
+                    textTransform: "none",
+                    fontSize: "1em",
+                    borderRadius: "5px",
+                  }}
+                >
+                  <p
+                    style={{
+                      margin: "0",
+                      fontFamily: "Montserrat, sans-serif",
+                    }}
+                  >
+                    Cancel
+                  </p>
+                </WhiteCssButton>
+              </Grid>
+              <Grid container item justifyItems="flex-end" xs={6}>
                 <CssButton
                   type="submit"
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
+                  onClick={validate}
                   style={{
                     fontFamily: "Montserrat, sans-serif",
                     color: "white",

@@ -22,6 +22,8 @@ import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import PieChartOutlinedIcon from "@mui/icons-material/PieChartOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Home";
 
 function Dashboard() {
   const small = useMediaQuery("(max-width:756px)");
@@ -167,8 +169,13 @@ function Dashboard() {
           height: "100vh",
           overflow: "auto",
           backgroundColor: "#e7efff",
+          padding: "1em 2em",
         }}
-      ></main>
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </main>
     </div>
   );
 }

@@ -22,7 +22,16 @@ const CssTextField = styled(TextField)({
     borderRadius: "10px",
   },
 });
-
+const WhiteCssButton = styled(Button)({
+  backgroundColor: "white",
+  color: "black",
+  borderRadius: "5px",
+});
+const CssButton = styled(Button)({
+  backgroundColor: "#4267b2",
+  color: "white",
+  borderRadius: "5px",
+});
 const Login = () => {
   const small = useMediaQuery("(max-width:756px)");
   return (
@@ -63,7 +72,7 @@ const Login = () => {
             <p
               style={{
                 fontWeight: 500,
-                fontSize: "1.2em",
+                fontSize: "22.6667px",
               }}
             >
               Sign in
@@ -75,7 +84,7 @@ const Login = () => {
             // onSubmit={handleSubmit}
           >
             <div>
-              <Grid container item xs={12} sx={{ height: "2.5em" }}>
+              <Grid container item xs={12} sx={{ height: "3em" }}>
                 <p style={{ fontWeight: 500 }}>Email address</p>
               </Grid>
 
@@ -92,7 +101,7 @@ const Login = () => {
               />
             </div>
             <div>
-              <Grid container item xs={12} sx={{ height: "2.5em" }}>
+              <Grid container item xs={12} sx={{ height: "3em" }}>
                 <Grid item xs={6}>
                   <p style={{ fontWeight: 500 }}>Password</p>
                 </Grid>
@@ -111,34 +120,65 @@ const Login = () => {
               />
             </div>
             <FormControlLabel
-              control={<Checkbox checked={true} name="Remember Information" />}
-              label="Remember Information"
+              style={{ marginTop: "1em" }}
+              control={<Checkbox checked={false} name="Remember Information" />}
+              label={
+                <p style={{ fontWeight: 500, fontSize: "17px" }}>
+                  Remember Information
+                </p>
+              }
             />
-            <Grid container style={{ color: "#3F51B5" }}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick={() => {}}
-                style={{
-                  fontFamily: "Montserrat, sans-serif",
-                  backgroundColor: "#4267b2",
-                  fontSize: "1em",
-                  borderRadius: "5px",
-                  textTransform: "none",
-                }}
-              >
-                <p
+            <Grid container spacing={2} item xs={12}>
+              <Grid item xs={6}>
+                <WhiteCssButton
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  backgroundColor="white"
                   style={{
-                    margin: "0",
                     fontFamily: "Montserrat, sans-serif",
+                    color: "black",
+                    textTransform: "none",
+                    fontSize: "1em",
+                    borderRadius: "5px",
                   }}
                 >
-                  Sign In
-                </p>
-              </Button>
-            </Grid>
+                  <p
+                    style={{
+                      margin: "0",
+                      fontFamily: "Montserrat, sans-serif",
+                    }}
+                  >
+                    Cancel
+                  </p>
+                </WhiteCssButton>
+              </Grid>
+              <Grid container item justifyItems="flex-end" xs={6}>
+                <CssButton
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={() => {}}
+                  style={{
+                    fontFamily: "Montserrat, sans-serif",
+                    color: "white",
+                    fontSize: "1em",
+                    textTransform: "none",
+                    borderRadius: "5px",
+                  }}
+                >
+                  <p
+                    style={{
+                      margin: "0",
+                      fontFamily: "Montserrat, sans-serif",
+                    }}
+                  >
+                    Login
+                  </p>
+                </CssButton>
+              </Grid>{" "}
+            </Grid>{" "}
             <Grid container>
               <Grid item>
                 Not a member?{" "}

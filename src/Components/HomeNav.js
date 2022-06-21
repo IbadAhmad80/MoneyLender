@@ -6,7 +6,7 @@ const HomeNav = () => {
   return (
     <Grid
       container
-      sx={{ padding: small ? "1em" : "1em 3em" }}
+      sx={{ padding: small ? "1em" : "2em 3em" }}
       item
       xs={12}
       justifyContent="space-between"
@@ -24,8 +24,9 @@ const HomeNav = () => {
         item
         xs={6}
         md={4}
+        spacing={4}
       >
-        <Grid item xs={5} md={6}>
+        <Grid item xs={5} container justifyContent={"flex-end"} md={6}>
           <Typography
             variant="body"
             fontSize={small ? "1em" : "1.2em"}
@@ -40,8 +41,10 @@ const HomeNav = () => {
             as={Link}
             to="/login"
             sx={{
-              bg: "#4267B2",
+              backgroundColor: "#4267B2",
+              borderRadius: "4px",
               color: "white",
+              padding: "0.7em 1.3em",
               fontSize: small ? "" : "1.2em",
               width: "100%",
               textTransform: "none",

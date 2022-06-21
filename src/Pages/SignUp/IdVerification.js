@@ -522,7 +522,7 @@ function IdVerification({ data, setData }) {
                       fontFamily: "Montserrat, sans-serif",
                     }}
                   >
-                    Register
+                    Confirm
                   </p>
                 </CssButton>
               </Grid>{" "}
