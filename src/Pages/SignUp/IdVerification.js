@@ -528,7 +528,7 @@ function IdVerification({ data, setData }) {
               </Grid>{" "}
             </Grid>{" "}
           </Box>
-          <Grid container>
+          {/* <Grid container>
             <Grid item>
               Already a member?{" "}
               <Link
@@ -544,7 +544,7 @@ function IdVerification({ data, setData }) {
                 {"Login Now"}
               </Link>
             </Grid>
-          </Grid>
+          </Grid> */}
         </Paper>
       </Grid>
     </>
