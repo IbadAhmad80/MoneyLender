@@ -16,6 +16,7 @@ import login from "../assets/login.svg";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
+import SignUpForm from "../Components/SignUpForm";
 
 const CssTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
@@ -43,7 +44,6 @@ function Login() {
       style={{
         padding: "1em",
         boxSizing: "border-box",
-        height: "100vh",
         backgroundImage: `url(${login})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -51,7 +51,7 @@ function Login() {
     >
       <Grid container>
         <LoginNav />
-        <Grid
+        {/* <Grid
           item
           container
           justifyContent={"center"}
@@ -213,7 +213,8 @@ function Login() {
               </Grid>{" "}
             </Box>
           </Paper>
-        </Grid>
+        </Grid> */}
+        <SignUpForm />
       </Grid>
     </div>
   );
