@@ -16,14 +16,15 @@ import {
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import PieChartOutlinedIcon from "@mui/icons-material/PieChartOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
+import notification from "../assets/notification.svg";
+import user from "../assets/user.svg";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Home";
+import Request from "./Loan Request";
 
 function Dashboard() {
   const small = useMediaQuery("(max-width:756px)");
@@ -33,12 +34,11 @@ function Dashboard() {
   };
 
   return (
-    <div>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         open={open}
         sx={{ backgroundColor: "#e7efff", boxShadow: "none" }}
-        position="absolute"
       >
         <Toolbar>
           <Grid item container alignItems={"center"}>
@@ -67,15 +67,11 @@ function Dashboard() {
             }}
           >
             <IconButton color="inherit" style={{ marginRight: "1em" }}>
-              <NotificationsNoneOutlinedIcon
-                style={{ color: "black", fontSize: "1.1em" }}
-              />
+              <img src={notification} alt="" />
             </IconButton>
             <IconButton color="inherit">
               {" "}
-              <PermIdentityOutlinedIcon
-                style={{ color: "black", fontSize: "1.2em" }}
-              />
+              <img src={user} alt="" />
             </IconButton>
           </Box>
         </Toolbar>
@@ -103,7 +99,7 @@ function Dashboard() {
         <Toolbar />
 
         <List>
-          <Grid item container spacing={2} xs={12}>
+          <Grid item container spacing={4} xs={12}>
             <Grid item xs={12}>
               <ListItem key={"Dashboard"} selected={true} disablePadding>
                 <ListItemButton>
@@ -112,7 +108,7 @@ function Dashboard() {
                   </ListItemIcon>
                   <ListItemText
                     primary={
-                      <Typography fontSize={"1.7em"}>Dashboard</Typography>
+                      <Typography fontSize={"24px"}>Dashboard</Typography>
                     }
                   />
                 </ListItemButton>
@@ -126,7 +122,7 @@ function Dashboard() {
                   </ListItemIcon>
                   <ListItemText
                     primary={
-                      <Typography fontSize={"1.7em"}>Messages</Typography>
+                      <Typography fontSize={"24px"}>Messages</Typography>
                     }
                   />
                 </ListItemButton>
@@ -140,7 +136,7 @@ function Dashboard() {
                   </ListItemIcon>
                   <ListItemText
                     primary={
-                      <Typography fontSize={"1.7em"}>LoanBoard</Typography>
+                      <Typography fontSize={"24px"}>LoanBoard</Typography>
                     }
                   />
                 </ListItemButton>
@@ -154,7 +150,7 @@ function Dashboard() {
                   </ListItemIcon>
                   <ListItemText
                     primary={
-                      <Typography fontSize={"1.7em"}>Settings</Typography>
+                      <Typography fontSize={"24px"}>Settings</Typography>
                     }
                   />
                 </ListItemButton>
@@ -163,20 +159,24 @@ function Dashboard() {
           </Grid>
         </List>
       </Drawer>
-      <main
+
+      <Box
+        component="main"
         style={{
           flexGrow: 1,
           height: "100vh",
           overflow: "auto",
           backgroundColor: "#e7efff",
-          padding: "1em 2em",
+          padding: "0.5em 1.5em",
         }}
       >
+        <Toolbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/request" elemt={<Request />} />
         </Routes>
-      </main>
-    </div>
+      </Box>
+    </Box>
   );
 }
 
