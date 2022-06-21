@@ -1,42 +1,8 @@
 import React from "react";
-import {
-  Grid,
-  Typography,
-  Button,
-  Paper,
-  Box,
-  Checkbox,
-  FormControlLabel,
-  TextField,
-} from "@mui/material";
-import { Link } from "react-router-dom";
-import { alpha, styled } from "@mui/material/styles";
+import { Grid } from "@mui/material";
 import LoginNav from "../Components/LoginNav";
 import login from "../assets/login.svg";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepButton from "@mui/material/StepButton";
 import SignUpForm from "../Components/SignUpForm";
-
-const CssTextField = styled(TextField)({
-  "& .MuiOutlinedInput-root": {
-    backgroundColor: "rgba(255,255,255,0.6)",
-    height: "3em",
-    borderRadius: "10px",
-  },
-});
-
-const CssButton = styled(Button)({
-  backgroundColor: "#4267b2",
-  color: "white",
-  borderRadius: "5px",
-});
-
-const WhiteCssButton = styled(Button)({
-  backgroundColor: "white",
-  color: "black",
-  borderRadius: "5px",
-});
 
 function Login() {
   return (
@@ -218,15 +184,6 @@ function Login() {
       </Grid>
     </div>
   );
-  {
-    /* 
-background: rgba( 210, 210, 210, 0.25 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 3px );
--webkit-backdrop-filter: blur( 3px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 ); */
-  }
 }
 
 export default Login;

@@ -126,6 +126,7 @@ const Login = () => {
                   backgroundColor: "#4267b2",
                   fontSize: "1em",
                   borderRadius: "5px",
+                  textTransform: "none",
                 }}
               >
                 <p
@@ -151,7 +152,7 @@ const Login = () => {
                     fontWeight: 700,
                   }}
                 >
-                  {"Sign Up Now"}{" "}
+                  {"Sign Up Now"}
                 </Link>
               </Grid>
             </Grid>
@@ -160,15 +161,6 @@ const Login = () => {
       </Grid>
     </div>
   );
-  {
-    /* 
-background: rgba( 210, 210, 210, 0.25 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 3px );
--webkit-backdrop-filter: blur( 3px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 ); */
-  }
 };
 
 export default Login;
