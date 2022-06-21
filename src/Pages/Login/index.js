@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Typography,
@@ -33,6 +33,28 @@ const CssButton = styled(Button)({
   borderRadius: "5px",
 });
 const Login = () => {
+  const [data, setData] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({ email: false, password: false });
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setData((state) => ({ ...state, [id]: value }));
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    let error = false;
+    if (data.email === "") {
+      setErrors((state) => ({ ...state, email: true }));
+      error = true;
+    }
+    if (data.password === "") {
+      setErrors((state) => ({ ...state, password: true }));
+      error = true;
+    }
+    if (!error) {
+      // submit
+    }
+  };
   const small = useMediaQuery("(max-width:756px)");
   return (
     <div
@@ -79,11 +101,7 @@ const Login = () => {
               Sign in
             </p>
           </Typography>
-          <Box
-            component="form"
-            noValidate
-            // onSubmit={handleSubmit}
-          >
+          <Box component="form" noValidate onSubmit={submit}>
             <div>
               <Grid container item xs={12} sx={{ height: "3em" }}>
                 <p style={{ fontWeight: 500 }}>Email address</p>
@@ -92,10 +110,13 @@ const Login = () => {
               <CssTextField
                 // margin="normal"
                 required
+                error={errors.email}
+                helperText={errors.email && "Enter a valid email"}
                 fullWidth
                 placeholder="name@placeholder.com"
                 // label="Email Id"
                 id="email"
+                onChange={handleChange}
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -111,11 +132,14 @@ const Login = () => {
                 </Grid>{" "}
               </Grid>{" "}
               <CssTextField
+                error={errors.password}
+                helperText={errors.passwowrd && "Enter a password"}
                 required
                 fullWidth
                 name="password"
                 placeholder="Placeholder"
                 type="password"
+                onChange={handleChange}
                 id="password"
                 autoComplete="current-password"
               />
@@ -135,7 +159,6 @@ const Login = () => {
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
-                  backgroundColor="white"
                   style={{
                     fontFamily: "Montserrat, sans-serif",
                     color: "black",

@@ -22,17 +22,19 @@ import PieChartOutlinedIcon from "@mui/icons-material/PieChartOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import notification from "../assets/notification.svg";
 import user from "../assets/user.svg";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./Home";
 import Request from "./Loan Request";
 
 function Dashboard() {
+  const location = useLocation();
   const small = useMediaQuery("(max-width:756px)");
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
+  console.log(location.pathname);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -172,8 +174,8 @@ function Dashboard() {
       >
         <Toolbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/request" elemt={<Request />} />
+          <Route path="" element={<Home />} />
+          <Route path="/loan-board/request" element={<Request />} />
         </Routes>
       </Box>
     </Box>
