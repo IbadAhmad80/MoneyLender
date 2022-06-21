@@ -38,7 +38,7 @@ function Dashboard() {
       <CssBaseline />
       <AppBar
         open={open}
-        sx={{ backgroundColor: "#e7efff", boxShadow: "none" }}
+        sx={{ backgroundColor: "transparent", boxShadow: "none" }}
       >
         <Toolbar>
           <Grid item container alignItems={"center"}>
@@ -173,7 +173,7 @@ function Dashboard() {
         <Toolbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/request" elemt={<Request />} />
+          <Route path="/request" element={<Request />} />
         </Routes>
       </Box>
     </Box>
