@@ -8,6 +8,7 @@ import {
   Checkbox,
   FormControlLabel,
   TextField,
+  useMediaQuery,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
@@ -22,59 +23,62 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const CssButton = styled(Button)({
-  backgroundColor: "#4267b2",
-  color: "white",
-  borderRadius: "5px",
-});
-
-function Login() {
+const Login = () => {
+  const small = useMediaQuery("(max-width:756px)");
   return (
     <div
-      style={{
-        padding: "1em",
-        boxSizing: "border-box",
-        height: "100vh",
-        backgroundImage: `url(${login})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
+      style={
+        small
+          ? {}
+          : {
+              padding: "1em",
+              boxSizing: "border-box",
+              height: "100vh",
+              backgroundImage: `url(${login})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }
+      }
     >
-      <Grid container>
-        <LoginNav />
+      <LoginNav />
 
-        <Grid item container justifyContent={"center"} alignItems="center">
-          <Paper
-            className="fade-in-slow"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              padding: "1.5em 2em",
-              borderRadius: "1em",
-              width: "25vw",
-            }}
-            elevation={6}
-            style={{
-              backgroundColor: "rgb(250, 250, 250, 0.2)",
-              border: "1px solid rgb(250, 250, 250, 0.5)",
-              backdropFilter: "blur(2px)",
-            }}
-          >
-            <Typography component="h1" variant="h5">
-              <p
-                style={{
-                  fontWeight: "500",
-                }}
-              >
-                Sign in
-              </p>
-            </Typography>
-            <Box
-              component="form"
-              noValidate
-              // onSubmit={handleSubmit}
+      <Grid item container justifyContent={"center"} alignItems="center">
+        <Paper
+          className="fade-in-slow"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            padding: "1.5em 2em",
+            borderRadius: "1em",
+            width: small ? "100vw" : "25vw",
+          }}
+          elevation={small ? 0 : 6}
+          style={{
+            backgroundColor: "rgb(250, 250, 250, 0.2)",
+            border: "1px solid rgb(250, 250, 250, 0.5)",
+            backdropFilter: "blur(2px)",
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            <p
+              style={{
+                fontWeight: 500,
+                fontSize: "1.2em",
+              }}
             >
-              <p style={{ fontWeight: "500" }}>Email address</p>
+              Sign in
+            </p>
+          </Typography>
+          <Box
+            component="form"
+            noValidate
+            // onSubmit={handleSubmit}
+          >
+            <div>
+              <Grid container item xs={12} sx={{ height: "2.5em" }}>
+                <p style={{ fontWeight: 500 }}>Email address</p>
+              </Grid>
+
               <CssTextField
                 // margin="normal"
                 required
@@ -86,74 +90,73 @@ function Login() {
                 autoComplete="email"
                 autoFocus
               />
-              <div style={{ marginTop: "1.5em" }}>
-                <Grid container item xs={12}>
-                  <Grid item xs={6}>
-                    <p style={{ fontWeight: "500" }}>Password</p>
-                  </Grid>
-                  <Grid container item justifyContent="flex-end" xs={6}>
-                    <p>Forgot Password?</p>
-                  </Grid>{" "}
+            </div>
+            <div>
+              <Grid container item xs={12} sx={{ height: "2.5em" }}>
+                <Grid item xs={6}>
+                  <p style={{ fontWeight: 500 }}>Password</p>
+                </Grid>
+                <Grid container item justifyContent="flex-end" xs={6}>
+                  <p>Forgot Password?</p>
                 </Grid>{" "}
-                <CssTextField
-                  required
-                  fullWidth
-                  name="password"
-                  placeholder="Placeholder"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                />
-              </div>
-              <FormControlLabel
-                control={
-                  <Checkbox checked={true} name="Remember Information" />
-                }
-                label="Remember Information"
+              </Grid>{" "}
+              <CssTextField
+                required
+                fullWidth
+                name="password"
+                placeholder="Placeholder"
+                type="password"
+                id="password"
+                autoComplete="current-password"
               />
-              <Grid container style={{ color: "#3F51B5" }}>
-                <CssButton
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  onClick={() => {}}
+            </div>
+            <FormControlLabel
+              control={<Checkbox checked={true} name="Remember Information" />}
+              label="Remember Information"
+            />
+            <Grid container style={{ color: "#3F51B5" }}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={() => {}}
+                style={{
+                  fontFamily: "Montserrat, sans-serif",
+                  backgroundColor: "#4267b2",
+                  fontSize: "1em",
+                  borderRadius: "5px",
+                }}
+              >
+                <p
                   style={{
+                    margin: "0",
                     fontFamily: "Montserrat, sans-serif",
-                    color: "#081a30",
-                    fontSize: "1em",
-                    borderRadius: "1em",
                   }}
                 >
-                  <p
-                    style={{
-                      margin: "0",
-                      fontFamily: "Montserrat, sans-serif",
-                    }}
-                  >
-                    Sign In
-                  </p>
-                </CssButton>
+                  Sign In
+                </p>
+              </Button>
+            </Grid>
+            <Grid container>
+              <Grid item>
+                Not a member?{" "}
+                <Link
+                  to="/sign-up"
+                  variant="body2"
+                  style={{
+                    fontFamily: "Montserrat, sans-serif",
+                    textDecoration: "none",
+                    color: "#3F51B5",
+                    fontWeight: 700,
+                  }}
+                >
+                  {"Sign Up Now"}{" "}
+                </Link>
               </Grid>
-              <Grid container>
-                <Grid item>
-                  Not a member?{" "}
-                  <Link
-                    to="/sign-up"
-                    variant="body2"
-                    style={{
-                      fontFamily: "Montserrat, sans-serif",
-                      textDecoration: "none",
-                      color: "#3F51B5",
-                    }}
-                  >
-                    {"Sign Up Now"}{" "}
-                  </Link>
-                </Grid>
-              </Grid>
-            </Box>
-          </Paper>
-        </Grid>
+            </Grid>
+          </Box>
+        </Paper>
       </Grid>
     </div>
   );
@@ -166,6 +169,6 @@ backdrop-filter: blur( 3px );
 border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 ); */
   }
-}
+};
 
 export default Login;

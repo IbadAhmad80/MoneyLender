@@ -1,17 +1,26 @@
 import React from "react";
-import { Grid, Typography, Button } from "@mui/material";
+import { Grid, Typography, Button, useMediaQuery } from "@mui/material";
 import HomeNav from "../Components/HomeNav";
 import home from "../assets/homepage.svg";
 import { Link } from "react-router-dom";
 const Home = () => {
+  const small = useMediaQuery("(max-width:756px)");
   return (
-    <Grid container>
+    <div>
       <HomeNav />
-      <Grid container item style={{ padding: "3em" }} xs={12}>
+      <Grid
+        container
+        direction={small ? "column-reverse" : ""}
+        item
+        style={{ padding: small ? "1em" : "3em", boxSizing: "border-box" }}
+        xs={12}
+      >
         <Grid
-          sx={{ padding: "4.65em" }}
+          sx={{ padding: small ? "none" : "4.65em" }}
+          spacing={small ? 1 : 3}
           item
-          xs={6}
+          xs={12}
+          md={6}
           container
           alignItems="center"
         >
@@ -48,11 +57,11 @@ const Home = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <img style={{ height: "80vh" }} src={home} alt="" />
+        <Grid sx={{ height: "70vh" }} item xs={12} md={6}>
+          <img style={{ height: "100%", width: "100%" }} src={home} alt="" />
         </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 };
 

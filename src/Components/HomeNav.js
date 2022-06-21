@@ -1,36 +1,50 @@
 import React from "react";
-import { Grid, Typography, Button } from "@mui/material";
+import { Grid, Typography, Button, useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 const HomeNav = () => {
+  const small = useMediaQuery("(max-width:756px)");
   return (
     <Grid
       container
-      sx={{ padding: "1em 3em" }}
+      sx={{ padding: small ? "1em" : "1em 3em" }}
       item
       xs={12}
       justifyContent="space-between"
       alignItems={"center"}
     >
-      <Grid item xs={6}>
+      <Grid item xs={3} md={6}>
         <Typography sx={{ cursor: "pointer" }} variant="h4">
           LOGO
         </Typography>
       </Grid>
-      <Grid container justifyContent="center" alignItems={"center"} item xs={5}>
-        <Grid item xs={3}>
-          <Typography variant="h5">About us</Typography>
+      <Grid
+        container
+        justifyContent="flex-end"
+        alignItems={"center"}
+        item
+        xs={6}
+        md={4}
+      >
+        <Grid item xs={5} md={6}>
+          <Typography
+            variant="body"
+            fontSize={small ? "1em" : "1.2em"}
+            fontWeight={700}
+          >
+            About us
+          </Typography>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={7} md={6}>
           <Button
+            size={small ? "" : "large"}
             as={Link}
             to="/login"
-            size="large"
             sx={{
               bg: "#4267B2",
               color: "white",
+              fontSize: small ? "" : "1.2em",
+              width: "100%",
               textTransform: "none",
-              fontSize: "1.2em",
-              borderRadius: "none",
               textDecoration: "none",
             }}
             variant="contained"
