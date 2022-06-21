@@ -385,8 +385,8 @@ function IdVerification({ data, setData }) {
                     ? "Passport"
                     : " Identification Card"}
                 </p>
-                <label htmlFor="upload-photo">
-                  <input
+                <label htmlFor="id_proof">
+                  <CssTextField
                     style={{ display: "none" }}
                     id="id_proof"
                     name="upload-photo"

@@ -19,8 +19,9 @@ const StepForm = () => {
     username: "",
     password: "",
     id_type: "",
-    issuing_country: "",
+    country: "",
     passport_number: "",
+    id_proof: null,
     expiry: "",
     id_number: "",
   });
@@ -72,7 +73,6 @@ const StepForm = () => {
               </Stepper>
             </Paper>
           </Grid>
-
           {handleSteps(signup)}
         </>
       )}

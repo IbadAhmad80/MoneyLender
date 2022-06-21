@@ -3,6 +3,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Signup from "./Pages/SignUp/SignUp";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Dashboard from "./Dashboard";
 function App() {
   const theme = createTheme({
     typography: { fontFamily: "Mullish" },
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<Signup />} />
+          <Route path="/dashboard/*" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
