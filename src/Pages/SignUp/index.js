@@ -20,10 +20,9 @@ const StepForm = () => {
     password: "",
     id_type: "",
     country: "",
-    passport_number: "",
+    number: "",
     id_proof: null,
     expiry: "",
-    id_number: "",
   });
   const handleSteps = (step) => {
     switch (step) {

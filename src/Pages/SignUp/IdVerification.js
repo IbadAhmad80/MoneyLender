@@ -17,8 +17,9 @@ import {
   MenuItem,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { Link } from "react-router-dom";
+import { signup } from "../../actions/auth";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 const countries = [
   "Afghanistan",
   "Åland Islands",
@@ -287,6 +288,7 @@ const WhiteCssButton = styled(Button)({
 
 function IdVerification({ data, setData }) {
   const small = useMediaQuery("(max-width:756px)");
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState({
     name: false,
@@ -295,8 +297,39 @@ function IdVerification({ data, setData }) {
     password: false,
   });
   const handleSubmit = (e) => {
+    console.log(data);
     e.preventDefault();
-    dispatch({ type: "NEXT" });
+    let errors = false;
+
+    if (data.id_type === "") {
+      errors = true;
+      setError((state) => ({ ...state, id_type: true }));
+    }
+    if (data.id_type === "passport") {
+      if (data.country === "") {
+        errors = true;
+        setError((state) => ({ ...state, id_type: true }));
+      }
+      if (data.expiry === "") {
+        errors = true;
+        setError((state) => ({ ...state, expiry: true }));
+      }
+    }
+    if (data.id_proof === ("" || null || undefined)) {
+      errors = true;
+      setError((state) => ({ ...state, id_proof: true }));
+    }
+    if (data.number === "") {
+      errors = true;
+      setError((state) => ({ ...state, passport_number: true }));
+    }
+    if (!errors) {
+      const formdata = new FormData();
+      Object.keys(data).forEach((obj) => {
+        if (data[obj] !== "") formdata.append(obj, data[obj]);
+      });
+      dispatch(signup(formdata, navigate));
+    }
   };
 
   const handleChange = (e) => {
@@ -388,6 +421,12 @@ function IdVerification({ data, setData }) {
                 <label htmlFor="id_proof">
                   <CssTextField
                     style={{ display: "none" }}
+                    onChange={(e) =>
+                      setData((state) => ({
+                        ...state,
+                        id_proof: e.target.files[0],
+                      }))
+                    }
                     id="id_proof"
                     name="upload-photo"
                     type="file"

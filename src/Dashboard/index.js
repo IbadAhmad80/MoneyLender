@@ -175,7 +175,6 @@ function Dashboard() {
         <Toolbar />
         <Routes>
           <Route path="" element={<Home />} />
-          <Route path="/loan-board/request" element={<Request />} />
           <Route path="/" element={<Home />} />
           <Route path="/request" element={<Request />} />
         </Routes>

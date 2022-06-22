@@ -1,5 +1,6 @@
 import React from "react";
 import { Paper, Grid, Button, useMediaQuery } from "@mui/material";
+import { Link } from "react-router-dom";
 import success from "../../assets/success.svg";
 function Success() {
   const small = useMediaQuery("(max-width:756px)");
@@ -35,6 +36,8 @@ function Success() {
         </Grid>
         <Grid item xs={12}>
           <Button
+            component={Link}
+            to="/login"
             type="submit"
             fullWidth
             variant="contained"

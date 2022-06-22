@@ -10,10 +10,12 @@ import {
   TextField,
   useMediaQuery,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import LoginNav from "../../Components/LoginNav";
-import login from "../../assets/login.svg";
+import bg from "../../assets/login.svg";
+import { signin } from "../../actions/auth";
+import { useDispatch } from "react-redux";
 
 const CssTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
@@ -32,9 +34,13 @@ const CssButton = styled(Button)({
   color: "white",
   borderRadius: "5px",
 });
+
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({ email: false, password: false });
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setData((state) => ({ ...state, [id]: value }));
@@ -51,8 +57,9 @@ const Login = () => {
       setErrors((state) => ({ ...state, password: true }));
       error = true;
     }
+
     if (!error) {
-      // submit
+      dispatch(signin(data, navigate));
     }
   };
   const small = useMediaQuery("(max-width:756px)");
@@ -65,7 +72,7 @@ const Login = () => {
               padding: "1em",
               boxSizing: "border-box",
               height: "100vh",
-              backgroundImage: `url(${login})`,
+              backgroundImage: `url(${bg})`,
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
@@ -133,7 +140,7 @@ const Login = () => {
               </Grid>{" "}
               <CssTextField
                 error={errors.password}
-                helperText={errors.passwowrd && "Enter a password"}
+                helperText={errors.password && "Enter a password"}
                 required
                 fullWidth
                 name="password"
@@ -183,7 +190,6 @@ const Login = () => {
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
-                  onClick={() => {}}
                   style={{
                     fontFamily: "Montserrat, sans-serif",
                     color: "white",
